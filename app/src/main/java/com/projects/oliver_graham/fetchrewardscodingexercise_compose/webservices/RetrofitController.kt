@@ -2,6 +2,7 @@ package com.projects.oliver_graham.fetchrewardscodingexercise_compose.webservice
 
 import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.Item
 import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.JsonApi
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,10 +12,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/"
 
-class RetrofitController {
+@Singleton
+class RetrofitController @Inject constructor() {
 
     private val scope = CoroutineScope(Dispatchers.IO)
 
