@@ -6,6 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.Item
@@ -13,7 +15,8 @@ import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.Item
 @Composable
 fun HomeScreen(viewModel: HomeScreenViewModel) {
 
-    val items = viewModel.sortedItemList
+    // val items = viewModel.sortedItemList
+    val items = viewModel.items.collectAsState(initial = listOf())
     val listState = rememberLazyListState()
 
     LazyColumn(

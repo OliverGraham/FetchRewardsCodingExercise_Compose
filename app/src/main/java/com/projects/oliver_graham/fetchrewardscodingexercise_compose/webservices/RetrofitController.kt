@@ -1,7 +1,8 @@
 package com.projects.oliver_graham.fetchrewardscodingexercise_compose.webservices
 
 import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.Item
-import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.JsonApi
+import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.ItemDao
+import com.projects.oliver_graham.fetchrewardscodingexercise_compose.webservices.JsonApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,14 +15,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 private const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/"
 
-class RetrofitController {
+object RetrofitController {
 
-    private val scope = CoroutineScope(Dispatchers.IO)
-
-    private val _items = MutableStateFlow(listOf<Item>())
-    fun getItems(): MutableStateFlow<List<Item>> = _items
-
-    fun initializeItems() {
+    /**
+     * Given a dao and coroutine scope, this will get and convert
+     * the JSON objects into Item-object list, and insert the list
+     * into Room.
+     */
+    fun initialize(dao: ItemDao, scope: CoroutineScope) {
         val retrofit: Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -31,14 +32,14 @@ class RetrofitController {
         val call = jsonApi.getItems()
 
         // retrofit has a built-in asynchronous handler
-        doEnqueue(theCall = call, itemList = _items)
+        doEnqueue(theCall = call, dao, scope)
     }
 
     /**
      *  Handle retrofit's callback
      *  If successful, add list of converted Json objects to itemList
      */
-    private fun doEnqueue(theCall: Call<List<Item>>, itemList: MutableStateFlow<List<Item>>) {
+    private fun doEnqueue(theCall: Call<List<Item>>, dao: ItemDao, scope: CoroutineScope) {
 
         theCall.enqueue(object: Callback<List<Item>> {
 
@@ -53,11 +54,11 @@ class RetrofitController {
                 // should have good response (200's); get json objects and all to itemList
                 val responseList: List<Item>? = response.body()
                 if (responseList != null) {
-                    scope.launch {
-                        itemList.emit(responseList)
-                    }
+                    scope.launch { ->
 
-                    // itemList.addAll(responseList)
+                        // insert list into local SQLite database
+                        dao.insertAllItems(responseList)
+                    }
                 }
             }
 

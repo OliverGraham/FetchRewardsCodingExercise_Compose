@@ -1,5 +1,6 @@
-package com.projects.oliver_graham.fetchrewardscodingexercise_compose.data
+package com.projects.oliver_graham.fetchrewardscodingexercise_compose.webservices
 
+import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.Item
 import retrofit2.Call
 import retrofit2.http.GET
 
