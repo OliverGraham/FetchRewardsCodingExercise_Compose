@@ -50,7 +50,7 @@ object RetrofitController {
                     return
                 }
 
-                // should have good response (200's); get json objects and all to itemList
+                // should have good response (200's)
                 val responseList: List<Item>? = response.body()
                 if (responseList != null) {
                     scope.launch { ->
