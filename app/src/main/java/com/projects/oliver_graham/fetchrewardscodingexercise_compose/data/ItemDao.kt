@@ -9,14 +9,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ItemDao {
 
-    /** Get all items from table
-    *   Room will notify the flow anytime there's a change in the database
-    */
     @Query("SELECT * FROM item_table")
     fun getAllItems(): Flow<List<Item>>
 
-    // TODO: full filter query here
-    @Query("SELECT * FROM item_table WHERE name IS NOT NULL")
+    /* Filters out any null or empty string */
+    @Query("SELECT * FROM item_table WHERE name IS NOT NULL AND name IS NOT ''")
     fun getNonNullItems(): Flow<List<Item>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

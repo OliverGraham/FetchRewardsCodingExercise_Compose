@@ -19,7 +19,7 @@ object RetrofitController {
 
     /**
      * Given a dao and coroutine scope, this will get and convert
-     * the JSON objects into Item-object list, and insert the list
+     * the JSON objects into an Item-object list, and insert the list
      * into Room.
      */
     fun initialize(dao: ItemDao, scope: CoroutineScope) {
@@ -31,13 +31,12 @@ object RetrofitController {
         val jsonApi: JsonApi = retrofit.create(JsonApi::class.java)
         val call = jsonApi.getItems()
 
-        // retrofit has a built-in asynchronous handler
         doEnqueue(theCall = call, dao, scope)
     }
 
     /**
      *  Handle retrofit's callback
-     *  If successful, add list of converted Json objects to itemList
+     *  If successful, insert list of converted Json objects into Room
      */
     private fun doEnqueue(theCall: Call<List<Item>>, dao: ItemDao, scope: CoroutineScope) {
 

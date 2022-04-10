@@ -28,6 +28,10 @@ abstract class ItemDatabase: RoomDatabase() {
         private val lock = Any()
 
         // TODO: read up on synchronized()
+        /**
+        *   Overload constructor for ItemDatabase
+        *   Return instance of database, or instantiate if needed
+        */
         operator fun invoke(context: Context) = dbInstance ?: synchronized(lock) {
             dbInstance ?: createDatabase(context.applicationContext).also { dbInstance = it }
         }
@@ -35,6 +39,5 @@ abstract class ItemDatabase: RoomDatabase() {
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(context, ItemDatabase::class.java, "item_database")
                 .build()
-
     }
 }
