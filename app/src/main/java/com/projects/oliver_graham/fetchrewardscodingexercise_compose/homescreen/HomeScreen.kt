@@ -24,14 +24,13 @@ import com.projects.oliver_graham.fetchrewardscodingexercise_compose.ui.Expandab
 @Composable
 fun HomeScreen(viewModel: HomeScreenViewModel) {
 
-    val groupedItems = viewModel.groupedItems.value
     val listState = rememberLazyListState()
 
     LazyColumn(
         state = listState,
         modifier = Modifier.fillMaxHeight()
     ) { ->
-        items(groupedItems.toList()) { (listId, itemList) ->
+        items(viewModel.groupedItems.value.toList()) { (listId, itemList) ->
             CenteredContentRow { ->
                 ExpandableCard(listId, itemList)
             }

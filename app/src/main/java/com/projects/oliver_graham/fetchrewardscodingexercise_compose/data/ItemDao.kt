@@ -12,7 +12,7 @@ interface ItemDao {
     @Query("SELECT * FROM item_table")
     fun getAllItems(): Flow<List<Item>>
 
-    /* Filters out any null or empty string */
+    /* Filter out any null or empty string */
     @Query("SELECT * FROM item_table WHERE name IS NOT NULL AND name IS NOT ''")
     fun getNonNullItems(): Flow<List<Item>>
 

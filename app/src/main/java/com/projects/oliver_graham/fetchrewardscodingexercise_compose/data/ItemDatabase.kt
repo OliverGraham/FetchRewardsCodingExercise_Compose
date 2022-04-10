@@ -1,6 +1,5 @@
 package com.projects.oliver_graham.fetchrewardscodingexercise_compose.data
 
-
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -27,7 +26,6 @@ abstract class ItemDatabase: RoomDatabase() {
         private var dbInstance: ItemDatabase? = null
         private val lock = Any()
 
-        // TODO: read up on synchronized()
         /**
         *   Overload constructor for ItemDatabase
         *   Return instance of database, or instantiate if needed

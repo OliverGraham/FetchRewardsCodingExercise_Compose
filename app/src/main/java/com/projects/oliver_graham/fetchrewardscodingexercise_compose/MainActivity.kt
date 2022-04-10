@@ -47,7 +47,8 @@ class MainActivity : ComponentActivity() {
         val dao = ItemDatabase(this).itemDao()
         val scope = CoroutineScope(Dispatchers.IO)
 
-        RetrofitController.initialize(dao, scope)
+        // use context that lives as long as this activity
+        RetrofitController.initialize(dao, scope, this)
         
         setContent {
             FetchRewardsCodingExercise_ComposeTheme {
@@ -80,7 +81,7 @@ private fun HomeScreenPreview() {
     val dao = ItemDatabase(LocalContext.current).itemDao()
     val scope = CoroutineScope(Dispatchers.IO)
 
-    RetrofitController.initialize(dao, scope)
+    RetrofitController.initialize(dao, scope, LocalContext.current)
 
     FetchRewardsCodingExercise_ComposeTheme {
         Surface(

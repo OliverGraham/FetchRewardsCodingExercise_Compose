@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class HomeScreenViewModel(private val itemRepository: ItemRepository) : ViewModel() {
+class HomeScreenViewModel(itemRepository: ItemRepository) : ViewModel() {
 
     private val items: Flow<List<Item>> = itemRepository.getAllItems()
 
