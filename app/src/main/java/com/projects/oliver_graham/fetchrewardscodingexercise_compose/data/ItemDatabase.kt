@@ -9,7 +9,10 @@ import com.projects.oliver_graham.fetchrewardscodingexercise_compose.webservices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-// Room will generate code for this class
+/**
+ *  Contains data from retrofit's http request.
+ *  Room will generate code for this class.
+ */
 @Database(entities = [Item::class], version = 1)
 abstract class ItemDatabase: RoomDatabase() {
 

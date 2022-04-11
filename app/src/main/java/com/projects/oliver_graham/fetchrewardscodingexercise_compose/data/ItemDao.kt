@@ -6,6 +6,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
+/**
+ *  Contains the two necessary operations, and
+ *  has two more for fun. Of special note is the filtering
+ *  query, getNonNullItems().
+ */
 @Dao
 interface ItemDao {
 

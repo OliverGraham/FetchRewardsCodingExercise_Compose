@@ -10,9 +10,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ *  Accesses data and provides it to the UI
+ */
 class HomeScreenViewModel(itemRepository: ItemRepository) : ViewModel() {
 
-    private val items: Flow<List<Item>> = itemRepository.getAllItems()
+    private val items: Flow<List<Item>> = itemRepository.getNonNullItems()
 
     // this will be exposed for the recyclerview (lazy column)
     val groupedItems: MutableState<Map<Int, List<Item>>> = mutableStateOf(mutableMapOf())

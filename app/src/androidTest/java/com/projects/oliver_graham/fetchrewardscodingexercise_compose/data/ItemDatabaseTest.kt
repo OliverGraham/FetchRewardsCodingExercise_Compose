@@ -12,6 +12,11 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ *  Tests for Room.
+ *  Checks that Item objects are inserted correctly
+ *  and that the filter query works as intended.
+ * */
 @RunWith(AndroidJUnit4::class)
 class ItemDatabaseTest : TestCase() {
 

@@ -5,10 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.Item
 import com.projects.oliver_graham.fetchrewardscodingexercise_compose.data.ItemDao
-import com.projects.oliver_graham.fetchrewardscodingexercise_compose.webservices.JsonApi
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

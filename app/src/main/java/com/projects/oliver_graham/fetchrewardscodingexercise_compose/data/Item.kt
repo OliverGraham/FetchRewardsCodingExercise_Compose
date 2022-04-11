@@ -5,7 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-/* List item, populated by JSON object */
+/**
+ *  List item, populated by JSON object
+ */
 @Entity(tableName = "item_table")
 @Parcelize
 data class Item(

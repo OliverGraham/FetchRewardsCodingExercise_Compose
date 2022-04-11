@@ -18,7 +18,7 @@ import com.projects.oliver_graham.fetchrewardscodingexercise_compose.ui.Expandab
  *  Display a list of cards, with content derived from Room,
  *  grouped together as specified.
  *  The cards can expand or contract to reveal the list content
- *  when clicked (or pressed)
+ *  when clicked (or pressed).
  */
 @OptIn(ExperimentalFoundationApi::class, ExperimentalAnimationApi::class)
 @Composable
